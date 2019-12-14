@@ -13,6 +13,7 @@ android:
     licenses:
       - 'android-sdk-license-.+'
 
+
 before_install:
   # Install avdmanager and other tools
   - mkdir "$ANDROID_HOME/licenses" || true
