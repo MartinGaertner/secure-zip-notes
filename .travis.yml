@@ -11,11 +11,13 @@ android:
     - extra-google-m2repository
     - extra-android-m2repository
 
-    - sys-img-x86-android-29
+    #- sys-img-x86-android-29
 
 before_install:
   # Install avdmanager and other tools
-  - sdkmanager tools
+  - mkdir "$ANDROID_HOME/licenses" || true
+  - echo "24333f8a63b6825ea9c5514f83c2829b004d1fee" >> "$ANDROID_HOME/licenses/android-sdk-license"
+  - echo y | sdkmanager tools
   - which avdmanager
   - which android
   - sdkmanager "system-images;android-28;default;armeabi-v7a"
