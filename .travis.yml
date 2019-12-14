@@ -17,7 +17,7 @@ before_install:
   - echo "24333f8a63b6825ea9c5514f83c2829b004d1fee" >> "$ANDROID_HOME/licenses/android-sdk-license"
   - yes | sdkmanager tools
   - yes | sdkmanager "system-images;android-28;google_apis_playstore;x86"
-  - no | avdmanager create avd --force --name testAVD --package "system-images;android-28;google_apis_playstore;x86"
+  - echo no | avdmanager create avd --force --name testAVD --package "system-images;android-28;google_apis_playstore;x86"
 
 before_script:
   - android-wait-for-emulator
