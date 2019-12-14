@@ -18,6 +18,7 @@ before_install:
   - yes | sdkmanager tools
   - yes | sdkmanager "system-images;android-28;google_apis_playstore;x86"
   - echo no | avdmanager create avd --force --name testAVD --package "system-images;android-28;google_apis_playstore;x86"
+  - $ANDROID_HOME/emulator/emulator -avd testAVD -no-audio -no-window &
 
 before_script:
   - android-wait-for-emulator
