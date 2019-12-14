@@ -19,6 +19,7 @@ before_script:
   - android list
   - android
   - which android
+  - echo no | avdmanager create avd --force --name testAVD --package "system-images;android-28;google_apis_playstore;x86"
   - echo no | android create avd --force --name testAVD -t android-28 --package "system-images;android-28;google_apis_playstore;x86"
   - android list device
   - android list target
