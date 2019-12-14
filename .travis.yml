@@ -11,20 +11,23 @@ android:
     - extra-google-m2repository
     - extra-android-m2repository
 
-    - sys-img-x86-android-29
+    #- sys-img-x86-android-29
+
+before_install:
+  # Install avdmanager and other tools
+  - sdkmanager tools
+  - which avdmanager
+  - which android
+  - sdkmanager "system-images;android-28;default;armeabi-v7a"
+  - echo no | avdmanager create avd --force --name testAVD --package "system-images;android-28;default;armeabi-v7a"
 
 before_script:
-  - android list target
-  - android list device
   - android list
-  - android
-  - which android
-  - echo no | avdmanager create avd --force --name testAVD --package "system-images;android-28;google_apis_playstore;x86"
-  - echo no | android create avd --force --name testAVD -t android-28 --package "system-images;android-28;google_apis_playstore;x86"
-  - android list device
-  - android list target
-  - emulator -avd test -noaudio -no-window &
   - android-wait-for-emulator
+  # Disable animations
+  - adb shell settings put global window_animation_scale 0 &
+  - adb shell settings put global transition_animation_scale 0 &
+  - adb shell settings put global animator_duration_scale 0 &
   - adb shell input keyevent 82 &
 
 script:
